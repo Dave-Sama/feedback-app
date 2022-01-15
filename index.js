@@ -1,7 +1,21 @@
 const express = require('express');
+const { connectDB } = require('./db/connectDB');
+require('./services/passport');
+require('dotenv').config({ path: __dirname + '/config/.env' });
 const app = express();
-const passport = require('passport');
-const googleStrategy = require('passport-google-oauth20').Strategy();
+
+// little trick to make it even nicer.
+require('./routes/authRoutes')(app);
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log('Server listening on port ' + port));
+
+const start = async () => {
+	try {
+		await connectDB(String(process.env.MONGO_URI));
+		app.listen(port, () => console.log(`Server is listening on port ${port}`));
+	} catch (err) {
+		console.log(err);
+	}
+};
+
+start();
