@@ -21,3 +21,7 @@ module.exports = (app) => {
 		res.send(req.user);
 	});
 };
+
+// prod clientID : 237529632799-1gnnkm4aulkkghdfk65vhv5pn4rtrrcu.apps.googleusercontent.com
+
+// prod: client Secret: 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
