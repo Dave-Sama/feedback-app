@@ -26,7 +26,6 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 
 const port = process.env.PORT || 5000;
-
 const start = async () => {
 	try {
 		await connectDB(String(keys.MONGO_URI));
